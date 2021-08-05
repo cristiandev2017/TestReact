@@ -9,11 +9,14 @@ test('<Formulario /> Cargar el formulario y revisar que todo sea correcto', () =
     //Ahora haré debbug esto me traerá todo el componente, con esto verifico que me este montando el componente
     //wrapper.debug();
     //Act
-    //Esta era la forma anterior de hacerla
+    /*Esta era la forma anterior de hacerla
     const {getByText} = render(<Formulario />);
     //Assert
-    //Prueba de si el texto esta en el documento
     expect(getByText('Crear Cita')).toBeInTheDocument();
-
+    */
+    //Forma con screen
+    render(<Formulario />);
+    expect(screen.getByText('Crear Cita')).toBeInTheDocument();
+    
 });
 
