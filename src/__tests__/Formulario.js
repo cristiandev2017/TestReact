@@ -2,6 +2,8 @@ import React from 'react';
 import { render,screen,cleanup,fireEvent } from '@testing-library/react';
 import Formulario from '../components/Formulario';
 import '@testing-library/jest-dom/extend-expect';
+import userEvent from '@testing-library/user-event';
+
 
 //Lo que hace es limpiar las pruebas del componente previo antes de ejecutar el siguiente, esto no lo permite el cleanup
 //En las ultimas versiones no es necesario ya lo hace react
@@ -75,4 +77,31 @@ test('<Formulario /> Pruebas un poco mas funcionales', () =>{
     //Click en el boton de submit
     const btnSubmit = screen.getByTestId('btn-submit');
     fireEvent.click(btnSubmit)
+});
+
+test('<Formulario /> Usando userEvent', () =>{
+    render(<Formulario 
+    crearCita={crearCita}
+        />
+    );
+    //Escribe en un formulario
+    userEvent.type(screen.getByTestId('mascota'),'Kira');
+    userEvent.type(screen.getByTestId('propietario'),'Cristian');
+    userEvent.type(screen.getByTestId('fecha'),'2021-06-10');
+    userEvent.type(screen.getByTestId('hora'),'10:30');
+    userEvent.type(screen.getByTestId('sintomas'),'solo duerme');
+
+    //Click en el boton de submit
+    const btnSubmit = screen.getByTestId('btn-submit');
+    userEvent.click(btnSubmit)
+
+    //Revisar por la alerta(Al usar query lo que hace es darle opcionalidad si no existe no pasa error)
+    const alerta = screen.queryByTestId('alerta');
+    expect(alerta).not.toBeInTheDocument();
+
+    //Comprobar que la funcion de crear cita se haya ejecutado
+    //Esperamos que la funcion haya sido llamada
+    expect(crearCita).toHaveBeenCalled();
+    //Numero de veces que la llamare
+    expect(crearCita).toHaveBeenCalledTimes(1);
 });

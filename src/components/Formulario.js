@@ -39,7 +39,7 @@ const Formulario = ({crearCita}) => {
 
         // Asignar un ID
         cita.id = uuid();
-
+        console.log(cita);
         // Crear la cita
         crearCita(cita);
 
@@ -52,6 +52,8 @@ const Formulario = ({crearCita}) => {
             sintomas: ''
         })
     }
+
+  
 
     return ( 
         <Fragment>
@@ -86,6 +88,7 @@ const Formulario = ({crearCita}) => {
 
                 <label>Fecha</label>
                 <input 
+                    data-testid="fecha"
                     type="date"
                     name="fecha"
                     className="u-full-width"
@@ -95,6 +98,7 @@ const Formulario = ({crearCita}) => {
 
                 <label>Hora</label>
                 <input 
+                    data-testid="hora"
                     type="time"
                     name="hora"
                     className="u-full-width"
@@ -104,6 +108,7 @@ const Formulario = ({crearCita}) => {
 
                 <label>Síntomas</label>
                 <textarea
+                    data-testid="sintomas"
                     className="u-full-width"
                     name="sintomas"
                     onChange={actualizarState}
