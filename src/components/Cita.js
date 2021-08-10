@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 const Cita = ({cita, eliminarCita}) => ( 
-    <div className="cita">
+    <div data-testid="cita" className="cita">
         <p>Mascota: <span>{cita.mascota}</span> </p>
         <p>Dueño: <span>{cita.propietario}</span> </p>
         <p>Fecha: <span>{cita.fecha}</span> </p>
