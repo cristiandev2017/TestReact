@@ -57,13 +57,14 @@ const Formulario = ({crearCita}) => {
         <Fragment>
             <h2 data-testid="title">Crear Cita</h2>
 
-            { error ? <p className="alerta-error">Todos los campos son obligatorios</p>     : null }
+            { error ? <p data-testid="alerta" className="alerta-error">Todos los campos son obligatorios</p>     : null }
 
             <form
                 onSubmit={submitCita}
             >
                 <label>Nombre Mascota</label>
-                <input 
+                <input
+                    data-testid="mascota"
                     type="text"
                     name="mascota"
                     className="u-full-width"
@@ -74,6 +75,7 @@ const Formulario = ({crearCita}) => {
 
                 <label>Nombre Dueño</label>
                 <input 
+                    data-testid="propietario"
                     type="text"
                     name="propietario"
                     className="u-full-width"
